@@ -1,0 +1,45 @@
+{
+  "name": "most-wanted",
+  "version": "2.1.0",
+  "description": "Person searching tool.",
+  "scripts": {
+    "test": "karma start karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devCodeCamp/starter-most-wanted.git"
+  },
+  "keywords": [
+    "JavaScript"
+  ],
+  "author": "devCodeCamp",
+  "bugs": {
+    "url": "https://github.com/devCodeCamp/starter-most-wanted/issues"
+  },
+  "homepage": "https://github.com/devCodeCamp/starter-most-wanted#readme",
+  "devDependencies": {
+    "eslint": "^3.15.0",
+    "eslint-plugin-react": "^6.9.0",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.4.1",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true,
+      "jasmine": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    },
+    "rules":{
+      "semi": 1,
+      "no-unused-vars": 0
+    }
+  }
+}
