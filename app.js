@@ -34,6 +34,7 @@ function mainMenu(person, people){
   switch(displayOption){
     case "info":
     // TODO: get person's info
+    displayPerson(person, people);
     break;
     case "family":
     // TODO: get person's family
@@ -74,11 +75,22 @@ function displayPeople(people){
   }).join("\n"));
 }
 
-function displayPerson(person){
+function displayPerson(person, people){
+  var parent = getParents(person, people);
+  var spouse = getSpouse(person, people);
+
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
   var personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
+  personInfo += "Gender: " + person.gender + "\n";
+  personInfo += "DOB: " + person.dob + "\n";
+  personInfo += "Height: " + person.height + "\n";
+  personInfo += "Weight: " + person.weight + "\n";
+  personInfo += "Eye Color: " + person.eyeColor + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
+  personInfo += "Parents: " + parent + "\n";
+  personInfo += "Spouse: " + spouse;
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
@@ -99,4 +111,52 @@ function yesNo(input){
 // helper function to pass in as default promptFor validation
 function chars(input){
   return true; // default validation only
+}
+
+//find parents
+function getParents(person, people){
+  var parents = [];
+  var parentsToReturn = "";
+
+  if(person.parents.length === 0){
+    return "Parents not in data set.";
+  }
+  else{
+    parents = people.filter(function(element){
+     if(element.id === person.parents[0] || element.id === person.parents[1]){
+        return true;
+     }
+    });
+  }
+
+  // TODO: Fix ending of string.
+  for(var i = 0; i < parents.length; i++){
+    parentsToReturn += parents[i].firstName + " " + parents[i].lastName + "\n";
+  }
+
+  return parentsToReturn;
+}
+
+//find Spouse
+function getSpouse(person, people){
+  var spouse;
+  var spouseArray = [];
+  var spouseToReturn = "";
+
+  if(person.currentSpouse === null){
+    return "Spouse not in data set.";
+  }
+  else{
+    spouseArray = people.filter(function(element){
+     if(element.id === person.currentSpouse){
+        return true;
+     }
+    });
+  }
+
+  spouse = spouseArray.pop();
+
+  spouseToReturn = spouse.firstName + " " + spouse.lastName;
+
+  return spouseToReturn;
 }
