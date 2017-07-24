@@ -54,11 +54,19 @@ function mainMenu(person, people){
 function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
+  var person;
+  var personFoundArry = [];
+  
+  personFoundArry = people.filter(function(element){
+    if(element.firstName === firstName && element.lastName === lastName){
+      return true;
+    }
+  });
 
-  // TODO: find the person using the name they entered
+  person = personFoundArry.pop();
 
+  mainMenu(person, people);
 }
-
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
