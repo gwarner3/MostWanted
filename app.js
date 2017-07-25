@@ -60,11 +60,18 @@ function searchByTraits(people) {
   var filteredList = searchByAge(people);
 
   filteredList = searchByHeight(filteredList);
+  // console.log('filteredList', filteredList);
+  // console.log('people', people);
 
   //var height = parseInt(promptFor("What is the person's height", chars));
   //var weight = promptFor("What is the person's weight", chars);
   // var occupation = prompt("What is the person's occupation");
   // var eyeColor = prompt("What is the person's eye color?");
+  if(filteredList.length === 22){
+    alert("You said no to all filters, there is no one to display.")
+    app(people);
+  }
+
   for(var i = 0; i < filteredList.length; i++){
     listed += filteredList[i].firstName + " " + filteredList[i].lastName + ". ";
   }
@@ -120,14 +127,14 @@ function changeDobToAge(people) {
     var y = new Date();
     var result = y - x;
     var age = Math.floor(result/31536000000);
-    return element.dob = age;
+    return element.age = age;
   });
 }
 
 function lookUpAge(people) {
   var age = parseInt(promptFor("What is the person's age?", chars));
   var ageFilteredArray = people.filter(function(element) {
-    if (element.dob === age){
+    if (element.age === age){
       return true;
       }
   });
