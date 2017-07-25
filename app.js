@@ -39,6 +39,7 @@ function mainMenu(person, people){
     break;
     case "family":
     // TODO: get person's family
+    displayFamily(person, people);
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -52,12 +53,12 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
 }
+
 function searchByTraits(people) {
 
   var ageFiltered = searchByAge(people);
 
   var heightFiltered = searchByHeight(ageFiltered);
-  var x = heightFiltered;
 
   //var height = parseInt(promptFor("What is the person's height", chars));
   //var weight = promptFor("What is the person's weight", chars);
@@ -65,6 +66,7 @@ function searchByTraits(people) {
   // var eyeColor = prompt("What is the person's eye color?");
 
 }
+
 function searchByHeight(people) {
   var heightSearch = promptFor("Do you want to search by height? Enter yes or no.", yesNo).toLowerCase();
   switch(heightSearch) {
@@ -78,6 +80,7 @@ function searchByHeight(people) {
     break;
   }
 }
+
 function lookUpHeight(people) {
   var height = parseInt(promptFor("What is the person's height?", chars));
   var heightFilteredArray = people.filter(function(element) {
@@ -87,6 +90,7 @@ function lookUpHeight(people) {
   });
   return heightFilteredArray;
 }
+
 function searchByAge(people){  
   var ageSearch = promptFor("Do you want to search by age? Enter yes or no.", yesNo).toLowerCase();
   switch(ageSearch){
@@ -103,6 +107,7 @@ function searchByAge(people){
     break;
   }
 }
+
 function changeDobToAge(people) {
   var peopleAge = people.map(function(element) {
     var x = new Date(element.dob);
@@ -112,6 +117,7 @@ function changeDobToAge(people) {
     return element.dob = age;
   });
 }
+
 function lookUpAge(people) {
   var age = parseInt(promptFor("What is the person's age?", chars));
   var ageFilteredArray = people.filter(function(element) {
@@ -121,6 +127,7 @@ function lookUpAge(people) {
   });
   return ageFilteredArray;
 }
+
 function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
@@ -137,6 +144,7 @@ function searchByName(people){
 
   mainMenu(person, people);
 }
+
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
@@ -162,6 +170,16 @@ function displayPerson(person, people){
   personInfo += "Spouse: " + spouse;
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
+}
+
+function displayFamily(person, people){
+  var parent = getParents(person, people);
+  var spouse = getSpouse(person, people);
+
+  var personFamily = "Parents: " + parent + "\n";
+  personFamily += "Spouse: " + spouse;
+
+  alert(personFamily);
 }
 
 // function that prompts and validates user input
