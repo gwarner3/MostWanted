@@ -176,12 +176,38 @@ function displayFamily(person, people){
   var parent = getParents(person, people);
   var spouse = getSpouse(person, people);
   var siblings = getSiblings(person, people);
+  var children = getChildren(person, people);
 
   var personFamily = "Parents: " + parent + "\n";
   personFamily += "Spouse: " + spouse + "\n";
-  personFamily += "Siblings: " + siblings;
+  personFamily += "Siblings: " + siblings + "\n";
+  personFamily += "Children: " + children;
 
   alert(personFamily);
+}
+
+function getChildren(person, people){
+  var children = [];
+  var childrenToReturn = "";
+
+  children = people.filter(function(element){
+    if(element.parents.length === 0){
+      return false;
+    }
+    else if(element.parents[0] === person.id || element.parents[1] === person.id){
+      return true;
+    }
+  });
+
+  for(var i = 0; i < children.length; i++){
+  childrenToReturn += children[i].firstName + " " + children[i].lastName + ". ";
+  }
+
+  if(children.length === 0){
+    childrenToReturn = "Children not in data set.";
+  }
+
+  return childrenToReturn;
 }
 
 function getSiblings(person, people){
