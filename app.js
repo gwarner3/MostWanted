@@ -43,6 +43,7 @@ function mainMenu(person, people){
     break;
     case "descendants":
     // TODO: get person's descendants
+    displayDescendants(person, people);
     break;
     case "restart":
     app(people); // restart
@@ -184,6 +185,44 @@ function displayFamily(person, people){
   personFamily += "Children: " + children;
 
   alert(personFamily);
+}
+
+function displayDescendants(person, people){
+  var descendants = findDescendants(person, people);
+
+  alert(descendants);
+}
+
+function findDescendants(person, people){
+  var descendant = getDescendants(person, people);
+  var descendantsToReturn = "";
+
+  for(var i = 0; i < descendant.length; i++){
+    descendantsToReturn += descendant[i].firstName + " " + descendant[i].lastName + ". ";
+    
+    if(i >= 0){
+      var temp = findDescendants(descendant[i], people);
+      descendantsToReturn += temp;
+    }
+
+    }
+
+  return descendantsToReturn;
+}
+
+function getDescendants(person, people){
+  var descendants = [];
+
+  descendants = people.filter(function(element){
+    if(element.parents.length === 0){
+      return false;
+    }
+    else if(element.parents[0] === person.id || element.parents[1] === person.id){
+      return true;
+    }
+  });
+
+  return descendants;
 }
 
 function getChildren(person, people){
