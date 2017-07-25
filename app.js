@@ -175,11 +175,44 @@ function displayPerson(person, people){
 function displayFamily(person, people){
   var parent = getParents(person, people);
   var spouse = getSpouse(person, people);
+  var siblings = getSiblings(person, people);
 
   var personFamily = "Parents: " + parent + "\n";
-  personFamily += "Spouse: " + spouse;
+  personFamily += "Spouse: " + spouse + "\n";
+  personFamily += "Siblings: " + siblings;
 
   alert(personFamily);
+}
+
+function getSiblings(person, people){
+  var siblings = [];
+  var siblingsToReturn = "";
+
+  if(person.parents.length === 0){
+    return "Siblings not in data set.";
+  }
+  else{
+    siblings = people.filter(function(element){
+      if(element.parents.length === 0){
+        return false;
+      }
+      else if(element === person){
+        return false;
+      }
+      else if(element.parents[0] === person.parents[0] || element.parents[0] === person.parents[1]){
+        return true;
+      }
+      else if(element.parents[1] === person.parents[0] || element.parents[1] === person.parents[1]){
+        return true;
+      }
+    });
+  }
+
+  for(var i = 0; i < siblings.length; i++){
+  siblingsToReturn += siblings[i].firstName + " " + siblings[i].lastName + ". ";
+  }
+
+  return siblingsToReturn;
 }
 
 // function that prompts and validates user input
@@ -218,7 +251,7 @@ function getParents(person, people){
 
   // TODO: Fix ending of string.
   for(var i = 0; i < parents.length; i++){
-    parentsToReturn += parents[i].firstName + " " + parents[i].lastName + "\n";
+    parentsToReturn += parents[i].firstName + ". " + parents[i].lastName + ". ";
   }
 
   return parentsToReturn;
