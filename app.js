@@ -56,16 +56,21 @@ function mainMenu(person, people){
 }
 
 function searchByTraits(people) {
+  var listed = "";
+  var filteredList = searchByAge(people);
 
-  var ageFiltered = searchByAge(people);
-
-  var heightFiltered = searchByHeight(ageFiltered);
+  filteredList = searchByHeight(filteredList);
 
   //var height = parseInt(promptFor("What is the person's height", chars));
   //var weight = promptFor("What is the person's weight", chars);
   // var occupation = prompt("What is the person's occupation");
   // var eyeColor = prompt("What is the person's eye color?");
+  for(var i = 0; i < filteredList.length; i++){
+    listed += filteredList[i].firstName + " " + filteredList[i].lastName + ". ";
+  }
 
+  alert(listed);
+  app(people);
 }
 
 function searchByHeight(people) {
@@ -189,6 +194,11 @@ function displayFamily(person, people){
 
 function displayDescendants(person, people){
   var descendants = findDescendants(person, people);
+
+  if(descendants.length === 0){
+    descendants = "Descendants not in data set."
+  }
+
 
   alert(descendants);
 }
