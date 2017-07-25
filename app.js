@@ -54,27 +54,72 @@ function mainMenu(person, people){
 }
 function searchByTraits(people) {
 
-  var age = searchByAge();
-  //var age = prompt("What is the person's age?");
+  var ageFiltered = searchByAge(people);
+
+  var heightFiltered = searchByHeight(ageFiltered);
+  var x = heightFiltered;
+
   //var height = parseInt(promptFor("What is the person's height", chars));
   //var weight = promptFor("What is the person's weight", chars);
   // var occupation = prompt("What is the person's occupation");
   // var eyeColor = prompt("What is the person's eye color?");
 
 }
-function searchByAge(){
-  var ageFound = [];
+function searchByHeight(people) {
+  var heightSearch = promptFor("Do you want to search by height? Enter yes or no.", yesNo).toLowerCase();
+  switch(heightSearch) {
+    case "yes":
+    var findHeight = lookUpHeight(people);
+    return findHeight;
+    case "no" :
+    return people;
+    default:
+    searchByHeight(people);
+    break;
+  }
+}
+function lookUpHeight(people) {
+  var height = parseInt(promptFor("What is the person's height?", chars));
+  var heightFilteredArray = people.filter(function(element) {
+    if (element.height === height){
+      return true;
+    }
+  });
+  return heightFilteredArray;
+}
+function searchByAge(people){  
   var ageSearch = promptFor("Do you want to search by age? Enter yes or no.", yesNo).toLowerCase();
   switch(ageSearch){
     case "yes":
-    break;
+    changeDobToAge(people);
+    //x = people;
+    //findAge holds the filteredAge array
+    var findAge = lookUpAge(people);
+    return findAge;
     case "no":
-    break;
+    return people;
     default:
-    searchByAge();
+    searchByAge(people);
     break;
   }
-
+}
+function changeDobToAge(people) {
+  var peopleAge = people.map(function(element) {
+    var x = new Date(element.dob);
+    var y = new Date();
+    var result = y - x;
+    var age = Math.floor(result/31536000000);
+    return element.dob = age;
+  });
+}
+function lookUpAge(people) {
+  var age = parseInt(promptFor("What is the person's age?", chars));
+  var ageFilteredArray = people.filter(function(element) {
+    if (element.dob === age){
+      return true;
+      }
+  });
+  return ageFilteredArray;
 }
 function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
