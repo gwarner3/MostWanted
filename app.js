@@ -12,6 +12,7 @@ function app(people){
     break;
     case 'no':
     // TODO: search by traits
+    searchByTraits(people);
     break;
     default:
     app(people); // restart app
@@ -51,7 +52,30 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
 }
+function searchByTraits(people) {
 
+  var age = searchByAge();
+  //var age = prompt("What is the person's age?");
+  //var height = parseInt(promptFor("What is the person's height", chars));
+  //var weight = promptFor("What is the person's weight", chars);
+  // var occupation = prompt("What is the person's occupation");
+  // var eyeColor = prompt("What is the person's eye color?");
+
+}
+function searchByAge(){
+  var ageFound = [];
+  var ageSearch = promptFor("Do you want to search by age? Enter yes or no.", yesNo).toLowerCase();
+  switch(ageSearch){
+    case "yes":
+    break;
+    case "no":
+    break;
+    default:
+    searchByAge();
+    break;
+  }
+
+}
 function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
