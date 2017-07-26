@@ -118,10 +118,12 @@ function changeDobToAge(people) {
 function lookUpAge(people) {
   var age = parseInt(promptFor("What is the person's age?", chars));
   var ageFilteredArray = people.filter(function(element) {
+    
     if (element.age === age){
       return true;
       }
   });
+
   return ageFilteredArray;
 }
 
@@ -140,13 +142,6 @@ function searchByName(people){
   person = personFoundArry.pop();
 
   mainMenu(person, people);
-}
-
-// alerts a list of people
-function displayPeople(people){
-  alert(people.map(function(person){
-    return person.firstName + " " + person.lastName;
-  }).join("\n"));
 }
 
 function displayPerson(person, people){
