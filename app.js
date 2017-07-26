@@ -182,6 +182,7 @@ function displayPerson(person, people){
   personInfo += "Spouse: " + spouse;
   
   alert(personInfo);
+  app(people);
 }
 
 function displayFamily(person, people){
@@ -196,6 +197,7 @@ function displayFamily(person, people){
   personFamily += "Children: " + children;
 
   alert(personFamily);
+  app(people);
 }
 
 function displayDescendants(person, people){
@@ -207,6 +209,7 @@ function displayDescendants(person, people){
 
 
   alert(descendants);
+  app(people);
 }
 
 function findDescendants(person, people){
