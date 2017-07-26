@@ -91,25 +91,24 @@ function lookUpHeight(people) {
 
 function searchByAge(people){  
   var ageSearch = promptFor("Do you want to search by age? Enter yes or no.", yesNo).toLowerCase();
+  
   switch(ageSearch){
     case "yes":
-    changeDobToAge(people);
-    //x = people;
-    //findAge holds the filteredAge array
-    var findAge = lookUpAge(people);
-    return findAge;
+      changeDobToAge(people);
+      var findAge = lookUpAge(people);
+      return findAge;
     case "no":
-    return people;
-    default:
-    searchByAge(people);
+      return people;
+      default:
+      searchByAge(people);
     break;
   }
 }
 
 function changeDobToAge(people) {
   var peopleAge = people.map(function(element) {
-    var x = new Date(element.dob);
-    var y = new Date();
+    var dateOfBirth = new Date(element.dob);
+    var currentDate = new Date();
     var result = y - x;
     var age = Math.floor(result/31536000000);
     return element.age = age;
