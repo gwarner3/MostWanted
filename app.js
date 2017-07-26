@@ -149,7 +149,7 @@ function searchByName(people){
   var personFoundArry = [];
   
   personFoundArry = people.filter(function(element){
-    if(element.firstName === firstName && element.lastName === lastName){
+    if(element.firstName.toLowerCase() === firstName.toLowerCase() && element.lastName.toLowerCase() === lastName.toLowerCase()){
       return true;
     }
   });
