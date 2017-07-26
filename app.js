@@ -283,41 +283,38 @@ function getSiblings(person, people){
   return siblingsToReturn;
 }
 
-// function that prompts and validates user input
 function promptFor(question, valid){
+  
   do{
     var response = prompt(question).trim();
   } while(!response || !valid(response));
   return response;
 }
 
-// helper function to pass into promptFor to validate yes/no answers
 function yesNo(input){
   return input.toLowerCase() == "yes" || input.toLowerCase() == "no";
 }
 
-// helper function to pass in as default promptFor validation
 function chars(input){
-  return true; // default validation only
+  return true;
 }
 
-//find parents
 function getParents(person, people){
+  
   var parents = [];
   var parentsToReturn = "";
 
   if(person.parents.length === 0){
     return "Parents not in data set.";
   }
-  else{
+  else {
     parents = people.filter(function(element){
-     if(element.id === person.parents[0] || element.id === person.parents[1]){
+      if(element.id === person.parents[0] || element.id === person.parents[1]){
         return true;
      }
     });
   }
 
-  // TODO: Fix ending of string.
   for(var i = 0; i < parents.length; i++){
     parentsToReturn += parents[i].firstName + ". " + parents[i].lastName + ". ";
   }
@@ -336,7 +333,7 @@ function getSpouse(person, people){
   else{
     spouseArray = people.filter(function(element){
       if(element.id === person.currentSpouse){
-      return true;
+        return true;
      }
     });
   }
