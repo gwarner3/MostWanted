@@ -213,15 +213,15 @@ function displayDescendants(person, people){
 }
 
 function findDescendants(person, people){
+  
   var descendant = getDescendants(person, people);
   var descendantsToReturn = "";
 
   for(var i = 0; i < descendant.length; i++){
-    descendantsToReturn += descendant[i].firstName + " " + descendant[i].lastName + ". ";
-    
+    descendantsToReturn += descendant[i].firstName + " " + descendant[i].lastName + ". ";    
     if(i >= 0){
-      var temp = findDescendants(descendant[i], people);
-      descendantsToReturn += temp;
+      var grandChildren = findDescendants(descendant[i], people);
+      descendantsToReturn += grandChildren;
     }
 
     }
@@ -230,6 +230,7 @@ function findDescendants(person, people){
 }
 
 function getDescendants(person, people){
+  
   var descendants = [];
 
   descendants = people.filter(function(element){
@@ -245,6 +246,7 @@ function getDescendants(person, people){
 }
 
 function getChildren(person, people){
+  
   var children = [];
   var childrenToReturn = "";
 
@@ -269,6 +271,7 @@ function getChildren(person, people){
 }
 
 function getSiblings(person, people){
+  
   var siblings = [];
   var siblingsToReturn = "";
 
