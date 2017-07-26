@@ -91,24 +91,25 @@ function lookUpHeight(people) {
 
 function searchByAge(people){  
   var ageSearch = promptFor("Do you want to search by age? Enter yes or no.", yesNo).toLowerCase();
-  
   switch(ageSearch){
     case "yes":
-      changeDobToAge(people);
-      var findAge = lookUpAge(people);
-      return findAge;
+    changeDobToAge(people);
+    //x = people;
+    //findAge holds the filteredAge array
+    var findAge = lookUpAge(people);
+    return findAge;
     case "no":
-      return people;
-      default:
-      searchByAge(people);
+    return people;
+    default:
+    searchByAge(people);
     break;
   }
 }
 
 function changeDobToAge(people) {
   var peopleAge = people.map(function(element) {
-    var dateOfBirth = new Date(element.dob);
-    var currentDate = new Date();
+    var x = new Date(element.dob);
+    var y = new Date();
     var result = y - x;
     var age = Math.floor(result/31536000000);
     return element.age = age;
@@ -118,12 +119,10 @@ function changeDobToAge(people) {
 function lookUpAge(people) {
   var age = parseInt(promptFor("What is the person's age?", chars));
   var ageFilteredArray = people.filter(function(element) {
-    
     if (element.age === age){
       return true;
       }
   });
-
   return ageFilteredArray;
 }
 
@@ -142,6 +141,13 @@ function searchByName(people){
   person = personFoundArry.pop();
 
   mainMenu(person, people);
+}
+
+// alerts a list of people
+function displayPeople(people){
+  alert(people.map(function(person){
+    return person.firstName + " " + person.lastName;
+  }).join("\n"));
 }
 
 function displayPerson(person, people){
@@ -164,12 +170,13 @@ function displayPerson(person, people){
 }
 
 function displayFamily(person, people){
+  
   var parent = getParents(person, people);
   var spouse = getSpouse(person, people);
   var siblings = getSiblings(person, people);
   var children = getChildren(person, people);
-
   var personFamily = "Parents: " + parent + "\n";
+  
   personFamily += "Spouse: " + spouse + "\n";
   personFamily += "Siblings: " + siblings + "\n";
   personFamily += "Children: " + children;
@@ -179,12 +186,12 @@ function displayFamily(person, people){
 }
 
 function displayDescendants(person, people){
+  
   var descendants = findDescendants(person, people);
 
   if(descendants.length === 0){
     descendants = "Descendants not in data set."
   }
-
 
   alert(descendants);
   app(people);
