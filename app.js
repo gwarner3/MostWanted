@@ -1,76 +1,57 @@
-/*
-Build all of your functions for displaying and gathering information below (GUI).
-*/
-
-// app is the function called to start the entire application
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
-    // TODO: search by name
-    searchByName(people);
-    break;
+      searchByName(people);
+      break;
     case 'no':
-    // TODO: search by traits
-    searchByTraits(people);
-    break;
+       searchByTraits(people);
+      break;
     default:
-    app(people); // restart app
-    break;
+      app(people);
+      break;
   }
 }
 
-// Menu function to call once you find who you are looking for
 function mainMenu(person, people){
-
-  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-
+  
   if(!person){
     alert("Could not find that individual.");
-    return app(people); // restart
+    return app(people);
   }
 
   var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
   switch(displayOption){
     case "info":
-    // TODO: get person's info
-    displayPerson(person, people);
-    break;
+     displayPerson(person, people);
+      break;
     case "family":
-    // TODO: get person's family
-    displayFamily(person, people);
-    break;
+      displayFamily(person, people);
+     break;
     case "descendants":
-    // TODO: get person's descendants
-    displayDescendants(person, people);
-    break;
+     displayDescendants(person, people);
+     break;
     case "restart":
-    app(people); // restart
-    break;
+     app(people);
+      break;
     case "quit":
-    return; // stop execution
+      return;
     default:
-    return mainMenu(person, people); // ask again
+      return mainMenu(person, people);
   }
 }
 
 function searchByTraits(people) {
   var listed = "";
-  var filteredList = searchByAge(people);
+  var filteredList;
 
+  filteredList  = searchByAge(people);
   filteredList = searchByHeight(filteredList);
-  // console.log('filteredList', filteredList);
-  // console.log('people', people);
-
-  //var height = parseInt(promptFor("What is the person's height", chars));
-  //var weight = promptFor("What is the person's weight", chars);
-  // var occupation = prompt("What is the person's occupation");
-  // var eyeColor = prompt("What is the person's eye color?");
+  
   if(filteredList.length === 22){
     alert("You said no to all filters, there is no one to display.");
     app(people);
-
   }
   else{
     for(var i = 0; i < filteredList.length; i++){
@@ -81,16 +62,17 @@ function searchByTraits(people) {
   }
 }
 
-function searchByHeight(people) {
+function searchByHeight(people){
   var heightSearch = promptFor("Do you want to search by height? Enter yes or no.", yesNo).toLowerCase();
-  switch(heightSearch) {
+
+  switch(heightSearch){
     case "yes":
-    var findHeight = lookUpHeight(people);
-    return findHeight;
+      var findHeight = lookUpHeight(people);
+     return findHeight;
     case "no" :
-    return people;
+     return people;
     default:
-    searchByHeight(people);
+      searchByHeight(people);
     break;
   }
 }
@@ -98,10 +80,12 @@ function searchByHeight(people) {
 function lookUpHeight(people) {
   var height = parseInt(promptFor("What is the person's height?", chars));
   var heightFilteredArray = people.filter(function(element) {
+    
     if (element.height === height){
       return true;
     }
   });
+  
   return heightFilteredArray;
 }
 
