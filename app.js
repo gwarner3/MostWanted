@@ -108,8 +108,8 @@ function searchByAge(people){
 
 function changeDobToAge(people) {
   var peopleAge = people.map(function(element) {
-    var x = new Date(element.dob);
-    var y = new Date();
+    var dateOfBirth = new Date(element.dob);
+    var currentDate = new Date();
     var result = y - x;
     var age = Math.floor(result/31536000000);
     return element.age = age;
