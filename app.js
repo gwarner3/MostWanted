@@ -54,6 +54,9 @@ function searchByTraits(people) {
   if(filteredList.length === 22){
     alert("You said no to all filters, there is no one to display.");
   }
+  else if(filteredList.length === 0){
+    alert("There is no one that meets your criteria.");
+  }
   else{
     for(var i = 0; i < filteredList.length; i++){
     listed += filteredList[i].firstName + " " + filteredList[i].lastName + ". ";
