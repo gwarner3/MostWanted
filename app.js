@@ -143,13 +143,6 @@ function searchByName(people){
   mainMenu(person, people);
 }
 
-// alerts a list of people
-function displayPeople(people){
-  alert(people.map(function(person){
-    return person.firstName + " " + person.lastName;
-  }).join("\n"));
-}
-
 function displayPerson(person, people){
   var parent = getParents(person, people);
   var spouse = getSpouse(person, people);
