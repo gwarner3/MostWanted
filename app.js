@@ -338,7 +338,6 @@ function getParents(person, people){
   return parentsToReturn;
 }
 
-//find Spouse
 function getSpouse(person, people){
   var spouse;
   var spouseArray = [];
@@ -349,8 +348,8 @@ function getSpouse(person, people){
   }
   else{
     spouseArray = people.filter(function(element){
-     if(element.id === person.currentSpouse){
-        return true;
+      if(element.id === person.currentSpouse){
+      return true;
      }
     });
   }
