@@ -114,7 +114,7 @@ function changeDobToAge(people) {
   var peopleAge = people.map(function(element) {
     var dateOfBirth = new Date(element.dob);
     var currentDate = new Date();
-    var result = y - x;
+    var result = currentDate - dateOfBirth;
     var age = Math.floor(result/31536000000);
     return element.age = age;
   });
