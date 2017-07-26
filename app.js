@@ -90,19 +90,19 @@ function lookUpHeight(people) {
 }
 
 function searchByAge(people){  
+  
   var ageSearch = promptFor("Do you want to search by age? Enter yes or no.", yesNo).toLowerCase();
+  
   switch(ageSearch){
     case "yes":
-    changeDobToAge(people);
-    //x = people;
-    //findAge holds the filteredAge array
-    var findAge = lookUpAge(people);
-    return findAge;
+      changeDobToAge(people);
+      var findAge = lookUpAge(people);
+      return findAge;
     case "no":
-    return people;
+      return people;
     default:
-    searchByAge(people);
-    break;
+      searchByAge(people);
+      break;
   }
 }
 
