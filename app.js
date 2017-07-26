@@ -23,6 +23,10 @@ function mainMenu(person, people){
 
   var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
+  if (displayOption === null){
+    app(people);
+  }
+
   switch(displayOption){
     case "info":
      displayPerson(person, people);
