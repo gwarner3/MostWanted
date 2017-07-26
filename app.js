@@ -327,6 +327,7 @@ function getParents(person, people){
 }
 
 function getSpouse(person, people){
+  
   var spouse;
   var spouseArray = [];
   var spouseToReturn = "";
