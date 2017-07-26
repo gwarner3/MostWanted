@@ -169,9 +169,7 @@ function displayPeople(people){
 function displayPerson(person, people){
   var parent = getParents(person, people);
   var spouse = getSpouse(person, people);
-
-  // print all of the information about a person:
-  // height, weight, age, name, occupation, eye color.
+  
   var personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender: " + person.gender + "\n";
@@ -182,7 +180,7 @@ function displayPerson(person, people){
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Parents: " + parent + "\n";
   personInfo += "Spouse: " + spouse;
-  // TODO: finish getting the rest of the information to display
+  
   alert(personInfo);
 }
 
