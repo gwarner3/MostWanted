@@ -21,29 +21,32 @@ function mainMenu(person, people){
     return app(people);
   }
 
-  var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'").toLowerCase();
+  var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
   if (displayOption === null){
     app(people);
   }
+  else{
+    displayOption = displayOption.toLowerCase();
 
-  switch(displayOption){
-    case "info":
-     displayPerson(person, people);
-      break;
-    case "family":
-      displayFamily(person, people);
-     break;
-    case "descendants":
-     displayDescendants(person, people);
-     break;
-    case "restart":
-     app(people);
-      break;
-    case "quit":
-      return;
-    default:
-      return mainMenu(person, people);
+    switch(displayOption){
+      case "info":
+       displayPerson(person, people);
+        break;
+      case "family":
+        displayFamily(person, people);
+       break;
+      case "descendants":
+       displayDescendants(person, people);
+       break;
+      case "restart":
+       app(people);
+        break;
+      case "quit":
+        return;
+      default:
+        return mainMenu(person, people);
+    }
   }
 }
 
