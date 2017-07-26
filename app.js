@@ -1,4 +1,5 @@
 function app(people){
+  
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
@@ -43,6 +44,7 @@ function mainMenu(person, people){
 }
 
 function searchByTraits(people) {
+  
   var listed = "";
   var filteredList;
 
@@ -78,6 +80,7 @@ function searchByHeight(people){
 }
 
 function lookUpHeight(people) {
+  
   var height = parseInt(promptFor("What is the person's height?", chars));
   var heightFilteredArray = people.filter(function(element) {
     
@@ -90,6 +93,7 @@ function lookUpHeight(people) {
 }
 
 function searchByAge(people){  
+  
   var ageSearch = promptFor("Do you want to search by age? Enter yes or no.", yesNo).toLowerCase();
   switch(ageSearch){
     case "yes":
@@ -107,6 +111,7 @@ function searchByAge(people){
 }
 
 function changeDobToAge(people) {
+  
   var peopleAge = people.map(function(element) {
     var x = new Date(element.dob);
     var y = new Date();
@@ -117,6 +122,7 @@ function changeDobToAge(people) {
 }
 
 function lookUpAge(people) {
+  
   var age = parseInt(promptFor("What is the person's age?", chars));
   var ageFilteredArray = people.filter(function(element) {
     if (element.age === age){
@@ -127,6 +133,7 @@ function lookUpAge(people) {
 }
 
 function searchByName(people){
+  
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
   var person;
@@ -144,6 +151,7 @@ function searchByName(people){
 }
 
 function displayPerson(person, people){
+  
   var parent = getParents(person, people);
   var spouse = getSpouse(person, people);
   
