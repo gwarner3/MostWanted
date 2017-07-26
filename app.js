@@ -68,16 +68,17 @@ function searchByTraits(people) {
   // var occupation = prompt("What is the person's occupation");
   // var eyeColor = prompt("What is the person's eye color?");
   if(filteredList.length === 22){
-    alert("You said no to all filters, there is no one to display.")
+    alert("You said no to all filters, there is no one to display.");
     app(people);
-  }
 
-  for(var i = 0; i < filteredList.length; i++){
+  }
+  else{
+    for(var i = 0; i < filteredList.length; i++){
     listed += filteredList[i].firstName + " " + filteredList[i].lastName + ". ";
+    alert(listed);
+    app(people);  
+    }
   }
-
-  alert(listed);
-  app(people);
 }
 
 function searchByHeight(people) {
