@@ -58,6 +58,7 @@ function searchByTraits(people) {
     filteredList = searchByAge(people);
     filteredList = searchByHeight(filteredList);
     filteredList = searchByWeight(filteredList);
+    filteredList = searchByOccupation(filteredList);
 
     if (filteredList.length === 22) {
         alert("You said no to all filters, there is no one to display.");
@@ -91,7 +92,7 @@ function searchByHeight(people) {
 }
 
 function searchByWeight(people) {
-    var weightSearch = promptFor("Do you want to search by height? Enter yes or no.", yesNo).toLowerCase();
+    var weightSearch = promptFor("Do you want to search by weight? Enter yes or no.", yesNo).toLowerCase();
 
     switch (weightSearch) {
         case "yes":
@@ -103,6 +104,34 @@ function searchByWeight(people) {
             searchByWeight(people);
             break;
     }
+}
+
+function searchByOccupation(people) {
+    var occupationSearch = promptFor("Do you want to search by occupation? Enter yes or no.", yesNo).toLowerCase();
+
+    switch (occupationSearch) {
+        case "yes":
+            var findOccupation = lookUpOccupation(people);
+            return findOccupation;
+        case "no":
+            return people;
+        default:
+            searchByOccupation(people);
+            break;
+    }
+}
+
+function lookUpOccupation(people) {
+
+    var occupation = promptFor("What is the person's occupation?", chars);
+    var occupationFilteredArray = people.filter(function (element) {
+
+        if (element.occupation === occupation) {
+            return true;
+        }
+    });
+
+    return occupationFilteredArray;
 }
 
 function lookUpHeight(people) {
