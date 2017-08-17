@@ -59,6 +59,7 @@ function searchByTraits(people) {
     filteredList = searchByHeight(filteredList);
     filteredList = searchByWeight(filteredList);
     filteredList = searchByOccupation(filteredList);
+    filteredList = searchByEyeColor(filteredList);
 
     if (filteredList.length === 22) {
         alert("You said no to all filters, there is no one to display.");
@@ -121,6 +122,21 @@ function searchByOccupation(people) {
     }
 }
 
+function searchByEyeColor(people) {
+    var eyeColorSearch = promptFor("Do you want to search by eye color? Enter yes or no.", yesNo).toLowerCase();
+
+    switch (eyeColorSearch) {
+        case "yes":
+            var findEyeColor = lookUpEyeColor(people);
+            return findEyeColor;
+        case "no":
+            return people;
+        default:
+            searchByEyeColor(people);
+            break;
+    }
+}
+
 function lookUpOccupation(people) {
 
     var occupation = promptFor("What is the person's occupation?", chars);
@@ -132,6 +148,19 @@ function lookUpOccupation(people) {
     });
 
     return occupationFilteredArray;
+}
+
+function lookUpEyeColor(people) {
+
+    var eyeColor = promptFor("What is the person's eye color?", chars);
+    var eyeColorFilteredArray = people.filter(function (element) {
+
+        if (element.eyeColor === eyeColor) {
+            return true;
+        }
+    });
+
+    return eyeColorFilteredArray;
 }
 
 function lookUpHeight(people) {
